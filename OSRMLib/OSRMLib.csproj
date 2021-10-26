@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>MindTerror</Authors>
+    <Company />
+    <Description>Useful library for Open Source Routing Machine (OSRM).
+</Description>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/FantaStudio/OSRMLib</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
