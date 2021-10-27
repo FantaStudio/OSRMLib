@@ -1,8 +1,11 @@
-﻿using OSRMLib.Helpers;
+﻿using Newtonsoft.Json;
+using OSRMLib.Helpers;
+using OSRMLib.OSRMResponses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OSRMLib.OSRMServices
 {
@@ -76,8 +79,22 @@ namespace OSRMLib.OSRMServices
                 return basedUrl;
         }
 
+        //Can be used to make default service
         protected virtual Dictionary<string,string> GetAdditionalURLParams() => null;
 
-        
+        protected async Task<T> Call<T>()
+        {
+            try
+            {
+                var request = GetServiceURL();
+                var response = await OSRMApi.CallRequest(request);
+                return JsonConvert.DeserializeObject<T>(response);
+            }
+            catch (Exception exception)
+            {
+                if (Service != null) throw new OSRMException(exception.Message) { Service = (Service)Service };
+                else throw new OSRMException(exception.Message);
+            }
+        }
     }
 }

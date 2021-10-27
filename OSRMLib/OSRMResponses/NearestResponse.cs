@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OSRMLib.OSRMResponses
 {
-    class NearestResponse:BaseResponse
+    public class NearestResponse:BaseResponse
     {
         [JsonProperty("waypoints")]
         public Waypoint[] Waypoints { get; set; }

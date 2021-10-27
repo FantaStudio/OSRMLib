@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OSRMLib.OSRMResponses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,19 +52,6 @@ namespace OSRMLib.OSRMServices
             return addParams.Count > 0 ? addParams : null;
         }
 
-        public async Task<RouteResponse> CallRoute()
-        {
-            try
-            {
-                var request = GetServiceURL();
-                var response = await OSRMApi.CallRequest(request);
-                var r = JsonConvert.DeserializeObject<RouteResponse>(response);
-                return r;
-            }
-            catch (Exception exception)
-            {
-                throw new OSRMException(exception.Message);
-            }
-        }
+        public async Task<RouteResponse> Call() => await Call<RouteResponse>();
     }
 }

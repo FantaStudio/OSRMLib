@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OSRMLib.OSRMResponses
 {
-    class MatchResponse : BaseResponse
+    public class MatchResponse : BaseResponse
     {
         [JsonProperty("tracepoints")]
         public Waypoint[] Tracepoints { get; set; }

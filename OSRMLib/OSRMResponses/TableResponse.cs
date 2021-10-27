@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OSRMLib.OSRMResponses
 {
-    class TableResponse : BaseResponse
+    public class TableResponse : BaseResponse
     {
         [JsonProperty("durations")]
         public List<List<double>> Durations { get; set; }
