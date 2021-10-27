@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/FantaStudio/OSRMLib</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>Map, Route, OSRM</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

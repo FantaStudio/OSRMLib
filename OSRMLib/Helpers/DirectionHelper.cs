@@ -27,7 +27,7 @@ namespace OSRMLib.Helpers
                 return Direction.None;
             }
 
-            directionString = directionString.Remove(' ');
+            directionString = directionString.Replace(" ","");
             var directions = Enum.GetNames(typeof(Direction)).ToList().Select(x=>x.ToLower());
             if (directions.Contains(directionString))
                 return (Direction)Enum.Parse(typeof(Direction), directions.Where(x => x == directionString).First());
