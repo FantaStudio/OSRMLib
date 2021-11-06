@@ -3,7 +3,7 @@ Useful library for Open Source Routing Machine (OSRM).
 
 To stay abreast what's happening, please read the [OSRM](http://project-osrm.org/docs/v5.24.0/api/#) documentation first.
 
-# Navigation
+# Header
 + [Services](#Services)
   + [Nearest service](#NearestService)
   + [Route service](#RouteService)
@@ -17,8 +17,15 @@ To stay abreast what's happening, please read the [OSRM](http://project-osrm.org
   + [Match response](#MatchResponse)
   + [Trip response](#TripResponse)
 + OSRM Classes
+  + Annotation
+  + Lane
+  + Route
+  + RouteLeg
+  + RouteStep
+  + StepManeuver
+  + Waypoint
++ Examples
 
-  
 # Services <a name="Services"></a> 
 
 > Service options are represented by properties of class
@@ -143,5 +150,23 @@ Additional properties:
    public Waypoint[] Waypoints { get; set; }
    public Route[] Trips { get; set; }
 ```
+# Examples <a name="Examples"></a>
+```c#
+RouteService routeS = new RouteService()
 
-# OSRM Classes
+public async void GetRoute(Location startPos, Location endPos){
+  // Add general "Coordinates" option
+  var coordinatesList = new List<Location>(startPos,endPos);
+  routeS.Coordinates = routeS.Coordinates.AddRange(coordinatesList);
+  
+  // Call route service for this coordinates and print it points
+  var response = await routeS.Call();
+  var points = response.Routes[0].Geometry;
+  foreach(var point in points)
+  {
+    Console.WriteLine($"Point: {point.Latitude}; {point.Longitude}")
+  }
+}
+
+await GetRoute(new Location(65.792032, -151.909505),new Location(64.828840, -147.669597));
+```
