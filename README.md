@@ -4,22 +4,22 @@ Useful library for Open Source Routing Machine (OSRM).
 To stay abreast what's happening, please read the [OSRM](http://project-osrm.org/docs/v5.24.0/api/#) documentation first.
 
 # Navigation
-+ Services
-  + Nearest service
-  + Route service
-  + Table service
-  + Match service
-  + Trip service
-+ Responses
-  + Nearest response
-  + Route response
-  + Table response
-  + Match response
-  + Trip response
++ [Services](#Services)
+  + [Nearest service](#NearestService)
+  + [Route service](#RouteService)
+  + [Table service](#TableService)
+  + [Match service](#MatchService)
+  + [Trip service](#TripService)
++ [Responses](#Responses)
+  + [Nearest response](#NearestResponse)
+  + [Route response](#RouteResponse)
+  + [Table response](#TableResponse)
+  + [Match response](#MatchResponse)
+  + [Trip response](#TripResponse)
 + OSRM Classes
 
   
-# Services
+# Services <a name="Services"></a> 
 
 > Service options are represented by properties of class
 
@@ -44,14 +44,14 @@ Each **service** has the folowing:
 ```
 > Call would return a task with response depending on service.
 
-## Nearest service
+## Nearest service <a name="NearestService"></a> 
 Additional options:
 ```c#
   public int? Number { get; set; }
 ```
 Call method returns: `Task<NearestResponse>`
 
-## Route service:
+## Route service <a name="RouteService"></a> 
 Additional options:
 ```c#
   public string Alternatives { get; set; }
@@ -63,7 +63,7 @@ Additional options:
 ```
 Call method returns: `Task<RouteResponse>`
 
-## Table service:
+## Table service <a name="TableService"></a> 
 Additional options:
 ```c#
   public IEnumerable<int> Sources { get; set; }
@@ -75,7 +75,7 @@ Additional options:
 ```
 Call method returns: `Task<TableResponse>`
 
-## Match service:
+## Match service <a name="MatchService"></a> 
 Additional options:
 ```c#
   public bool Steps { get; set; }
@@ -88,7 +88,7 @@ Additional options:
 ```
 Call method returns: `Task<MatchResponse>`
 
-## Trip service:
+## Trip service <a name="TripService"></a> 
 Additional options:
 ```c#
   public bool RoundTrip { get; set; }
@@ -100,7 +100,7 @@ Additional options:
 ```
 Call method returns: `Task<TripResponse>`
 
-# Responses
+# Responses <a name="Responses"></a>
 Each **response** has the folowing:
 + **General properties**
 ```c#
@@ -108,20 +108,20 @@ Each **response** has the folowing:
 ```
 + **Additional properties** depending on service.
 
-## Nearest Response:
+## Nearest Response <a name="NearestResponse"></a>
 Additional properties:
 ```c#
    public Waypoint[] Waypoints { get; set; }
 ```
 
-## Route Response:
+## Route Response <a name="RouteResponse"></a>
 Additional properties:
 ```c#
    public Waypoint[] Waypoints { get; set; }
    public Route[] Routes { get; set; }
 ```
 
-## Table Response:
+## Table Response <a name="TableResponse"></a>
 Additional properties:
 ```c#
    public List<List<double>> Durations { get; set; }
@@ -130,14 +130,14 @@ Additional properties:
    public Waypoint[] Destinations { get; set; }
 ```
 
-## Match Response:
+## Match Response <a name="MatchResponse"></a>
 Additional properties:
 ```c#
    public Waypoint[] Tracepoints { get; set; }
    public Route[] Matchings { get; set; }
 ```
 
-## Trip Response:
+## Trip Response <a name="TripResponse"></a>
 Additional properties:
 ```c#
    public Waypoint[] Waypoints { get; set; }
