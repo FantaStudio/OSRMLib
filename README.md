@@ -24,7 +24,7 @@ To stay abreast what's happening, please read the [OSRM](http://project-osrm.org
   + RouteStep
   + StepManeuver
   + Waypoint
-+ Examples
++ [Examples](#Examples)
 
 # Services <a name="Services"></a> 
 
@@ -157,7 +157,7 @@ RouteService routeS = new RouteService()
 public async void GetRoute(Location startPos, Location endPos){
   // Add general "Coordinates" option
   var coordinatesList = new List<Location>(startPos,endPos);
-  routeS.Coordinates = routeS.Coordinates.AddRange(coordinatesList);
+  routeS.Coordinates = routeS.Coordinates.ToList().AddRange(coordinatesList);
   
   // Call route service for this coordinates and print it points
   var response = await routeS.Call();
@@ -168,5 +168,6 @@ public async void GetRoute(Location startPos, Location endPos){
   }
 }
 
+//Print route points from Alaska cooridnates to Fairbanks city
 await GetRoute(new Location(65.792032, -151.909505),new Location(64.828840, -147.669597));
 ```
