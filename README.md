@@ -164,7 +164,7 @@ public async void GetRoute(Location startPos, Location endPos){
   var points = response.Routes[0].Geometry;
   foreach(var point in points)
   {
-    Console.WriteLine($"Point: {point.Latitude}; {point.Longitude}")
+    Console.WriteLine($"Point: {point.Latitude}; {point.Longitude}");
   }
 }
 
