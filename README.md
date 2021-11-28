@@ -156,8 +156,7 @@ RouteService routeS = new RouteService();
 
 public async void GetRoute(Location startPos, Location endPos){
   // Add general "Coordinates" option
-  var coordinatesList = new List<Location>(startPos,endPos);
-  routeS.Coordinates = new List<Location>() { startPos, endPos };
+  routeS.Coordinates = new List<Location> { startPos, endPos };
   
   // Call route service for this coordinates and print it points
   var response = await routeS.Call();
