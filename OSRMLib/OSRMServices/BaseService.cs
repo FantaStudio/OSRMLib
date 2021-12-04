@@ -20,6 +20,7 @@ namespace OSRMLib.OSRMServices
         public IEnumerable<string> Hints { get; set; }
         public IEnumerable<string> Exclude { get; set; }
         public bool SkipWaypoints { get; set; }
+        public Snapping Snapping { get; set; }
 
         public BaseService()
         {
@@ -42,7 +43,9 @@ namespace OSRMLib.OSRMServices
             if (Coordinates == null || Coordinates.Count() < 1)
                 throw new OSRMException("Wrong service coordinates") { Service = (Service)Service };
 
-            var basedUrl = $"{Enum.GetName(typeof(Service), Service).ToLower()}/{Version}/{Profile}/{OSRMApi.CreateCoordinatesUrlParam(Coordinates)}";
+            var serviceString = EnumHelper.ParseEnumToString(Service);
+
+            var basedUrl = $"{serviceString}/{Version}/{Profile}/{OSRMApi.CreateCoordinatesUrlParam(Coordinates)}";
             Dictionary<string, string> parametrs = new Dictionary<string, string>();
 
             // Base optional params
@@ -66,12 +69,16 @@ namespace OSRMLib.OSRMServices
             {
                 parametrs.Add("skip_waypoints", SkipWaypoints.ToString());
             }
+            if (Snapping != default)
+            {
+                parametrs.Add("snapping", EnumHelper.ParseEnumToString(Snapping));
+            }
 
             //Child optional params
             var addons = GetAdditionalURLParams();
             if(addons != null)
             {
-                parametrs.Concat(addons);
+                parametrs = parametrs.Concat(addons).ToDictionary(x => x.Key, x => x.Value);
             }
             if(parametrs.Count > 0)
                 return $"{basedUrl}?{string.Join("&",parametrs.Select(x => x.Key + "=" + x.Value))}";

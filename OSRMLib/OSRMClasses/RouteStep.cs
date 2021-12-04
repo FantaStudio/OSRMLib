@@ -23,7 +23,7 @@ public class RouteStep
                 return new Location[0];
             }
 
-            return OSRMPolylineConverter.Decode(GeometryStr, 1E5).ToArray();
+            return OSRMPolylineConverter.Decode(GeometryStr).ToArray();
         }
     }
 

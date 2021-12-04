@@ -36,7 +36,7 @@ public class StepManeuver
 
     public Direction Modifier
     {
-        get => DirectionHelper.ParseStringToDirection(ModifierString);
+        get => EnumHelper.ParseStringToEnum<Direction>(ModifierString);
     }
 }
 

@@ -10,6 +10,10 @@ namespace OSRMLib.OSRMServices
 {
     public class NearestService : BaseService
     {
+        /// <summary>
+        /// Number of nearest segments that should be returned.
+        /// </summary>
+        /// <value>int >= 1; default 1</value>
         public int? Number { get; set; }
 
         public NearestService() : base()

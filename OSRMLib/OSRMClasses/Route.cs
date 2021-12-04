@@ -28,13 +28,18 @@ public class Route
             {
                 return new Location[0];
             }
-            return OSRMPolylineConverter.Decode(GeometryString, 1E5).ToArray();
+            return OSRMPolylineConverter.Decode(GeometryString).ToArray();
         }
     }
 
     [JsonProperty("legs")]
     public RouteLeg[] Legs { get; set; }
 
+    /// <summary>
+    /// Confidence of the matching.
+    /// Exists only when it returns with Match Service
+    /// </summary>
+    /// <returns>float value between 0 and 1 </returns>
     // For match service
     [JsonProperty("confidence")]
     public float Confidence { get; set; }

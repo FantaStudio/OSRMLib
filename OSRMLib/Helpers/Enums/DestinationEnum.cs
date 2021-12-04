@@ -4,12 +4,9 @@ using System.Text;
 
 namespace OSRMLib.Helpers
 {
-    public enum Service
+    public enum Destination
     {
-        Nearest,
-        Route,
-        Table,
-        Match,
-        Trip
+        Any,
+        Last
     }
 }

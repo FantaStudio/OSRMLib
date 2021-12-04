@@ -67,7 +67,7 @@ namespace OSRMLib
 
             if (listOrPolylineFormat)
             {
-                return $"polyline({OSRMPolylineConverter.Encode(locations, 1E5)})";
+                return $"polyline({OSRMPolylineConverter.Encode(locations)})";
             }
             else
             {

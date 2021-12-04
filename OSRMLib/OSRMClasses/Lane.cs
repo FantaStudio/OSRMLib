@@ -2,6 +2,7 @@
 using OSRMLib.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 class Lane
@@ -17,7 +18,7 @@ class Lane
             {
                 return new Direction[0];
             }
-            return (Direction[])DirectionHelper.ParseStringArrayToDirection(IndicationsString);
+            return EnumHelper.ParseStringArrayToEnum<Direction>(IndicationsString).ToArray();
         }
     }
 

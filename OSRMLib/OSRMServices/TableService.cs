@@ -1,4 +1,5 @@
-﻿using OSRMLib.OSRMResponses;
+﻿using OSRMLib.Helpers;
+using OSRMLib.OSRMResponses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,37 @@ namespace OSRMLib.OSRMServices
 {
     public class TableService : BaseService
     {
+        /// <summary>
+        /// Use location with given index as source.
+        /// </summary>
         public IEnumerable<int> Sources { get; set; }
+
+        /// <summary>
+        /// Use location with given index as destination.
+        /// </summary>
         public IEnumerable<int> Destinations { get; set; }
+
+        /// <summary>
+        /// Return the requested table or tables in response.
+        /// </summary>
+        /// <value>duration (default), distance , or duration,distance</value>
         public string Annotations { get; set; }
+
+        /// <summary>
+        /// If no route found between a source/destination pair, calculate the as-the-crow-flies distance, then use this speed to estimate duration.
+        /// </summary>
+        /// <value>double > 0</value>
         public double FallbackSpeed { get; set; }
-        public string FallbackCoordinate { get; set; }
+
+        /// <summary>
+        /// When using a FallbackSpeed , use the user-supplied coordinate ( input ), or the snapped location ( snapped ) for calculating distances.
+        /// </summary>
+        /// input is default
+        public FallbackCoordinate FallbackCoordinate { get; set; }
+
+        /// <summary>
+        /// Use in conjunction with annotations=durations. Scales the table duration values by this number.
+        /// </summary>
         public double ScaleFactor { get; set; }
 
         public TableService() : base()
@@ -29,9 +56,9 @@ namespace OSRMLib.OSRMServices
                 addParams.Add("annotations", Annotations);
             }
 
-            if (!string.IsNullOrEmpty(FallbackCoordinate))
+            if (FallbackCoordinate != default)
             {
-                addParams.Add("fallback_coordinate", FallbackCoordinate);
+                addParams.Add("fallback_coordinate", EnumHelper.ParseEnumToString(FallbackCoordinate));
             }
 
             if (Sources != null && Sources.Count() > 0)

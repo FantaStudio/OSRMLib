@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OSRMLib.Helpers;
 using OSRMLib.OSRMResponses;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,38 @@ namespace OSRMLib.OSRMServices
 {
     public class RouteService : BaseService
     {
+        /// <summary>
+        /// 	Search for alternative routes. Passing a number alternatives=n searches for up to n alternative routes. *
+        /// </summary>
+        /// <value>true , false (default), or Number</value>
         public string Alternatives { get; set; }
+
+        /// <summary>
+        /// Returned route steps for each route leg
+        /// </summary>
+        /// /// <value>true , false (default)</value>
         public bool Steps { get; set; }
-        public string Annotations { get; set; }
-        public string Overview { get; set; }
-        public string ContinueStraight { get; set; }
+
+        /// <summary>
+        /// Returns additional metadata for each coordinate along the route geometry.
+        /// </summary>
+        /// <value>False is default</value>
+        public Annotations Annotations { get; set; }
+
+        /// <summary>
+        /// Add overview geometry either full, simplified according to highest zoom level it could be display on, or not at all.
+        /// </summary>
+        /// <value>Simplified is default</value>
+        public Overview Overview { get; set; }
+
+        /// <summary>
+        /// Forces the route to keep going straight at waypoints constraining uturns there even if it would be faster. Default value depends on the profile.
+        /// </summary>
+        public ContinueStraight ContinueStraight { get; set; }
+
+        /// <summary>
+        /// Treats input coordinates indicated by given indices as waypoints in returned Match object. Default is to treat all input coordinates as waypoints.
+        /// </summary>
         public IEnumerable<int> Waypoints { get; set; }
 
         public RouteService() : base()
@@ -33,17 +61,17 @@ namespace OSRMLib.OSRMServices
             {
                 addParams.Add("steps", Steps.ToString());
             }
-            if (!string.IsNullOrEmpty(Annotations))
+            if (Annotations != default)
             {
-                addParams.Add("annotations", Annotations);
+                addParams.Add("annotations", EnumHelper.ParseEnumToString(Annotations));
             }
-            if (!string.IsNullOrEmpty(Overview))
+            if (Overview != default)
             {
-                addParams.Add("overview", Overview);
+                addParams.Add("overview", EnumHelper.ParseEnumToString(Overview));
             }
-            if (!string.IsNullOrEmpty(ContinueStraight))
+            if (ContinueStraight != default)
             {
-                addParams.Add("continue_straight", ContinueStraight);
+                addParams.Add("continue_straight", EnumHelper.ParseEnumToString(ContinueStraight));
             }
             if (Waypoints != null && Waypoints.Count() > 0)
             {
