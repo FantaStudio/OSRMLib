@@ -29,6 +29,10 @@ namespace OSRMLib.Helpers
 
         public static string ParseEnumToString<T>(T enumToParse)
         {
+            if (!typeof(T).IsEnum)
+            {
+                throw new Exception("enumToParse must be a enum)");
+            }
             return Enum.GetName(typeof(T), enumToParse).ToLower();
         }
     }

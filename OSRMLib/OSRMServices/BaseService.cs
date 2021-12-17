@@ -43,7 +43,7 @@ namespace OSRMLib.OSRMServices
             if (Coordinates == null || Coordinates.Count() < 1)
                 throw new OSRMException("Wrong service coordinates") { Service = (Service)Service };
 
-            var serviceString = EnumHelper.ParseEnumToString(Service);
+            var serviceString = EnumHelper.ParseEnumToString((Service)Service);
 
             var basedUrl = $"{serviceString}/{Version}/{Profile}/{OSRMApi.CreateCoordinatesUrlParam(Coordinates)}";
             Dictionary<string, string> parametrs = new Dictionary<string, string>();
