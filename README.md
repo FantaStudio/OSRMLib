@@ -168,6 +168,9 @@ public async void GetRoute(Location startPos, Location endPos){
   }
 }
 
+var startLocation = new Location(65.792032, -151.909505);
+var destLocation = new Location(64.828840, -147.669597);
+
 //Print route points from Alaska cooridnates to Fairbanks city
-await GetRoute(new Location(65.792032, -151.909505), new Location(64.828840, -147.669597));
+await GetRoute(startLocation, destLocation);
 ```
