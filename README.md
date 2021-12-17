@@ -1,7 +1,7 @@
 # OSRMLib
 Useful library for Open Source Routing Machine (OSRM).
 
-[Download NuGet Package](https://www.nuget.org/packages?q=osrmlib) 
+[Download NuGet Package](https://www.nuget.org/packages/OSRMLib/) 
 
 To stay abreast what's happening, please read the [OSRM](http://project-osrm.org/docs/v5.24.0/api/#) documentation first.
 
