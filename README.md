@@ -102,11 +102,11 @@ Call method returns: `Task<MatchResponse>`
 Additional options:
 ```c#
   public bool RoundTrip { get; set; }
-  public string Source { get; set; }
-  public string Destination { get; set; }
+  public Source Source { get; set; }
+  public Destination Destination { get; set; }
   public bool Steps { get; set; }
-  public string Annotations { get; set; }
-  public string Overview { get; set; }
+  public Annotations Annotations { get; set; }
+  public Overview Overview { get; set; }
 ```
 Call method returns: `Task<TripResponse>`
 
