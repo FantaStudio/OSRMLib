@@ -1,6 +1,8 @@
 # OSRMLib
 Useful library for Open Source Routing Machine (OSRM).
 
+[Download NuGet Package](https://www.nuget.org/packages/OSRMLib/) 
+
 To stay abreast what's happening, please read the [OSRM](http://project-osrm.org/docs/v5.24.0/api/#) documentation first.
 
 # Header
@@ -42,6 +44,7 @@ Each **service** has the folowing:
   public IEnumerable<string> Hints { get; set; }
   public IEnumerable<string> Exclude { get; set; }
   public bool SkipWaypoints { get; set; }
+  public Snapping Snapping { get; set; }
 ```
 + **Additional options**, that depending on service and must comply with the rules of OSRM documentation.
 
@@ -63,9 +66,9 @@ Additional options:
 ```c#
   public string Alternatives { get; set; }
   public bool Steps { get; set; }
-  public string Annotations { get; set; }
-  public string Overview { get; set; }
-  public string ContinueStraight { get; set; }
+  public Annotations Annotations { get; set; }
+  public Overview Overview { get; set; }
+  public ContinueStraight ContinueStraight { get; set; }
   public IEnumerable<int> Waypoints { get; set; }
 ```
 Call method returns: `Task<RouteResponse>`
@@ -77,7 +80,7 @@ Additional options:
   public IEnumerable<int> Destinations { get; set; }
   public string Annotations { get; set; }
   public double FallbackSpeed { get; set; }
-  public string FallbackCoordinate { get; set; }
+  public FallbackCoordinate FallbackCoordinate { get; set; }
   public double ScaleFactor { get; set; }
 ```
 Call method returns: `Task<TableResponse>`
@@ -86,10 +89,10 @@ Call method returns: `Task<TableResponse>`
 Additional options:
 ```c#
   public bool Steps { get; set; }
-  public string Annotations { get; set; }
-  public string Overview { get; set; }
+  public Annotations Annotations { get; set; }
+  public Overview Overview { get; set; }
   public IEnumerable<long> Timestamps { get; set; }
-  public string Gaps { get; set; }
+  public Gaps Gaps { get; set; }
   public bool Tidy { get; set; }
   public IEnumerable<int> Waypoints { get; set; }
 ```
@@ -99,11 +102,11 @@ Call method returns: `Task<MatchResponse>`
 Additional options:
 ```c#
   public bool RoundTrip { get; set; }
-  public string Source { get; set; }
-  public string Destination { get; set; }
+  public Source Source { get; set; }
+  public Destination Destination { get; set; }
   public bool Steps { get; set; }
-  public string Annotations { get; set; }
-  public string Overview { get; set; }
+  public Annotations Annotations { get; set; }
+  public Overview Overview { get; set; }
 ```
 Call method returns: `Task<TripResponse>`
 
@@ -167,6 +170,9 @@ public async void GetRoute(Location startPos, Location endPos){
   }
 }
 
+var startLocation = new Location(65.792032, -151.909505);
+var destLocation = new Location(64.828840, -147.669597);
+
 //Print route points from Alaska cooridnates to Fairbanks city
-await GetRoute(new Location(65.792032, -151.909505), new Location(64.828840, -147.669597));
+await GetRoute(startLocation, destLocation);
 ```
