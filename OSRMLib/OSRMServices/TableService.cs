@@ -71,11 +71,6 @@ namespace OSRMLib.OSRMServices
                 addParams.Add("destinations", OSRMApi.CreateAnyUrlParam(Destinations));
             }
 
-            if (Destinations != null && Destinations.Count() > 0)
-            {
-                addParams.Add("destinations", OSRMApi.CreateAnyUrlParam(Destinations));
-            }
-
             if(FallbackSpeed > 0)
             {
                 addParams.Add("fallback_speed", FallbackSpeed.ToString());

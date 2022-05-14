@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/FantaStudio/OSRMLib</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
-    <PackageTags>Map, Route, OSRM</PackageTags>
-    <Version>1.0.1</Version>
+    <PackageTags>map, route, OSRM, maps, geo</PackageTags>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
